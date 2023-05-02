@@ -1,0 +1,28 @@
+[versions]
+android-gradle-plugin = "8.0.0"
+kotlin-android = "1.8.0"
+
+androidx = "1.10.0"
+androidx-appcompat = "1.6.1"
+androidx-test-ext-junit = "1.1.5"
+androidx-test-espresso-core = "3.5.1"
+
+material = "1.8.0"
+
+test-junit = "4.13.2"
+
+
+[libraries]
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+
+material = { module = "com.google.android.material:material", version.ref = "material" }
+
+test-junit = { module = "junit:junit", version.ref = "test-junit"}
+test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
+test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso-core" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
