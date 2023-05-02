@@ -1,5 +1,5 @@
 ---
-name: "\bEpic"
+name: Epic
 about: Epic about feature development
 title: ''
 labels: ''

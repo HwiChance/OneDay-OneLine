@@ -1,6 +1,6 @@
 ---
 name: Task
-about: "\bEach task of Epic"
+about: Each task of Epic
 title: ''
 labels: ''
 assignees: ''
