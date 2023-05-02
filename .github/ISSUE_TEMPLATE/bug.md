@@ -2,7 +2,7 @@
 name: Bug
 about: Bug, Crash, Known Issue
 title: ''
-labels: ''
+labels: Bug
 assignees: ''
 
 ---

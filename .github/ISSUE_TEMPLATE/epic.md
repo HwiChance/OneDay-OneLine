@@ -2,7 +2,7 @@
 name: Epic
 about: Epic about feature development
 title: ''
-labels: ''
+labels: Epic
 assignees: ''
 
 ---

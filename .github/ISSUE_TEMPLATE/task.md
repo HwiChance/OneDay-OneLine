@@ -2,7 +2,7 @@
 name: Task
 about: Each task of Epic
 title: ''
-labels: ''
+labels: Task
 assignees: ''
 
 ---
