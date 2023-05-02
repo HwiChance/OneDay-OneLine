@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "OneDayOneLine"
-include ':app'
+include(":app")
