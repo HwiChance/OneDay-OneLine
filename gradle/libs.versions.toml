@@ -1,6 +1,9 @@
 [versions]
-android-gradle-plugin = "8.0.0"
+android-gradle-plugin = "7.2.2"
 kotlin-android = "1.8.0"
+
+spotless = "6.19.0"
+ktlint = "0.49.1"
 
 androidx = "1.10.0"
 androidx-appcompat = "1.6.1"
@@ -26,3 +29,5 @@ test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
+
+diffplug-spotless = { id = "com.diffplug.spotless", version.ref = "spotless"}
