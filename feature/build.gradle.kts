@@ -1,26 +1,24 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.hwichance.onedayoneline"
+    namespace = "com.hwichance.feature"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.example.onedayoneline"
         minSdk = libs.versions.android.minsdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
+        release {
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -37,10 +35,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":data"))
-    implementation(project(":design"))
     implementation(project(":domain"))
-    implementation(project(":feature"))
     implementation(project(":util"))
     implementation(project(":util-android"))
 
