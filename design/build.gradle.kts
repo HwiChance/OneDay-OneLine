@@ -49,4 +49,6 @@ dependencies {
     implementation(libs.material)
 
     implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    implementation(libs.navigation.compose)
 }

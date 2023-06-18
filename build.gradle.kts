@@ -1,5 +1,17 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath(libs.gradle.android)
+        classpath(libs.gradle.kotlin)
+    }
+}
+
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false

@@ -55,4 +55,6 @@ dependencies {
     compileOnly(libs.javax.inject)
 
     implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    implementation(libs.navigation.compose)
 }

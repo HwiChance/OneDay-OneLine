@@ -10,7 +10,7 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.example.onedayoneline"
+        applicationId = "com.hwichance.onedayoneline"
         minSdk = libs.versions.android.minsdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -66,4 +66,6 @@ dependencies {
     kaptTest(libs.dagger.compiler)
 
     implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    implementation(libs.navigation.compose)
 }
