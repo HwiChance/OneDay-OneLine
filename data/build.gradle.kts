@@ -41,4 +41,6 @@ dependencies {
 
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.ext.junit)
+
+    compileOnly(libs.javax.inject)
 }

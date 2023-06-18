@@ -4,16 +4,20 @@ android-compileSdk = "33"
 android-targetSdk = "33"
 
 android-gradle-plugin = "7.2.2"
-kotlin = "1.8.0"
+kotlin = "1.8.10"
 
 spotless = "6.19.0"
 ktlint = "0.49.1"
+
+dagger = "2.41"
 
 androidx = "1.10.0"
 androidx-appcompat = "1.6.1"
 androidx-test-ext-junit = "1.1.5"
 androidx-test-espresso-core = "3.5.1"
 
+compose-bom = "2023.03.00" # https://developer.android.com/jetpack/compose/setup#bom-version-mapping
+compose-compiler = "1.4.4"
 material = "1.8.0"
 
 test-junit = "4.13.2"
@@ -23,11 +27,21 @@ test-junit = "4.13.2"
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+
 material = { module = "com.google.android.material:material", version.ref = "material" }
 
 test-junit = { module = "junit:junit", version.ref = "test-junit"}
 test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
 test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso-core" }
+
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-android = { module = "com.google.dagger:dagger-android", version.ref = "dagger" }
+dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+dagger-compiler-android = { module = "com.google.dagger:dagger-android-processor", version.ref = "dagger" }
+
+javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }

@@ -11,4 +11,6 @@ java {
 
 dependencies {
     implementation(project(":util"))
+
+    compileOnly(libs.javax.inject)
 }
