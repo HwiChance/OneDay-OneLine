@@ -1,4 +1,4 @@
-package com.example.onedayoneline
+package com.hwichance.data
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

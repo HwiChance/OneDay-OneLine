@@ -1,27 +1,24 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("kapt")
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.hwichance.onedayoneline"
+    namespace = "com.hwichance.feature"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.hwichance.onedayoneline"
         minSdk = libs.versions.android.minsdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
+        release {
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -44,10 +41,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":data"))
-    implementation(project(":design"))
     implementation(project(":domain"))
-    implementation(project(":feature"))
     implementation(project(":util"))
     implementation(project(":util-android"))
 
@@ -58,12 +52,7 @@ dependencies {
     androidTestImplementation(libs.test.ext.junit)
     androidTestImplementation(libs.test.espresso.core)
 
-    implementation(libs.dagger)
-    implementation(libs.dagger.android)
-    implementation(libs.dagger.android.support)
-    kapt(libs.dagger.compiler)
-    kapt(libs.dagger.compiler.android)
-    kaptTest(libs.dagger.compiler)
+    compileOnly(libs.javax.inject)
 
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
