@@ -12,5 +12,13 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "OneDayOneLine"
+
 include(":app")
+include(":domain")
+include(":data")
+include(":design")
+include(":feature")
+include(":util")
+include(":util-android")
