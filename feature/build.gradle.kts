@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":design"))
     implementation(project(":domain"))
     implementation(project(":util"))
     implementation(project(":util-android"))
