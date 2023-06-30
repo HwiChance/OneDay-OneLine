@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black10">#fff7f6f3</color>
+    <string name="app_logo_description">앱 로고</string>
 </resources>

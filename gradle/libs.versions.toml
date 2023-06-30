@@ -16,6 +16,8 @@ androidx-appcompat = "1.6.1"
 androidx-test-ext-junit = "1.1.5"
 androidx-test-espresso-core = "3.5.1"
 
+lifecycle = "2.6.1"
+
 compose-bom = "2023.03.00" # https://developer.android.com/jetpack/compose/setup#bom-version-mapping
 compose-compiler = "1.4.4"
 compose-activity = "1.4.0"
@@ -33,10 +35,14 @@ gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 
+lifecycle-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity" }
 compose-animation = { module = "androidx.compose.animation:animation" }
 compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material = { module = "androidx.compose.material:material" }
@@ -68,4 +74,6 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"
 diffplug-spotless = { id = "com.diffplug.spotless", version.ref = "spotless"}
 
 [bundles]
-compose = ["compose-activity", "compose-animation", "compose-ui", "compose-material", "compose-livedata", "compose-constraintlayout", "compose-ui-tooling", "compose-ui-tooling-preview", "compose-foundation"]
+compose = ["compose-activity", "compose-animation", "compose-ui", "compose-material", "compose-livedata", "compose-constraintlayout", "compose-ui-tooling-preview", "compose-foundation"]
+compose-debug = ["compose-ui-tooling", "compose-ui-test-manifest"]
+lifecycle = ["lifecycle-ktx", "lifecycle-viewmodel-ktx"]
