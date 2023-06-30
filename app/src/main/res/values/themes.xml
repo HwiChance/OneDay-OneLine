@@ -1,3 +1,9 @@
 <resources>
+
     <style name="Theme.OneDayOneLine" parent="Theme.MaterialComponents.Light.NoActionBar" />
+    <style name="Theme.OneDayOneLine.Start" parent="Theme.MaterialComponents.Light.NoActionBar" >
+        <item name="android:windowBackground">@color/black10</item>
+        <item name="android:statusBarColor">@color/black10</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>
