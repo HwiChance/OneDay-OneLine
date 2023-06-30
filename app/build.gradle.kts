@@ -42,6 +42,11 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
@@ -69,6 +74,9 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.navigation.compose)
+    debugImplementation(libs.bundles.compose.debug)
+
+    implementation(libs.bundles.lifecycle)
 
     implementation(platform(libs.firebase.bom))
 }
