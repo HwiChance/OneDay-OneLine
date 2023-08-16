@@ -1,9 +1,7 @@
 package com.hwichance.design.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -15,16 +13,12 @@ import com.hwichance.design.R
 fun LogoImage(
     modifier: Modifier = Modifier,
 ) {
-    Box(
+    Image(
         modifier = modifier,
-        contentAlignment = Alignment.Center,
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.app_logo),
-            contentDescription = stringResource(id = R.string.app_logo_description),
-            contentScale = ContentScale.Fit,
-        )
-    }
+        painter = painterResource(id = R.drawable.app_logo),
+        contentDescription = stringResource(id = R.string.app_logo_description),
+        contentScale = ContentScale.Fit,
+    )
 }
 
 @Preview(showBackground = true)
