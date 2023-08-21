@@ -1,14 +1,27 @@
 package com.hwichance.onedayoneline.start
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.hwichance.design.theme.OneDayOneLineTheme
+import com.hwichance.onedayoneline.home.HomeActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class StartActivity : ComponentActivity() {
+@AndroidEntryPoint
+class StartActivity @Inject constructor() : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            StartApp()
+            OneDayOneLineTheme {
+                StartNavHost(
+                    navigateToHome = {
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        finish()
+                    },
+                )
+            }
         }
     }
 }
