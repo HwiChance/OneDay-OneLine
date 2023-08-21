@@ -25,7 +25,10 @@ fun LoginButton(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val scaleValue: Float by animateFloatAsState(targetValue = if (isPressed) 1.05f else 1f)
+    val scaleValue: Float by animateFloatAsState(
+        targetValue = if (isPressed) 1.05f else 1f,
+        label = "LoginButtonAnimation",
+    )
 
     val buttonImage = when (type) {
         LoginType.KAKAO -> painterResource(id = R.drawable.kakao_login_button)
