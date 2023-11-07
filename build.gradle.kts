@@ -18,6 +18,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
     alias(libs.plugins.diffplug.spotless)
+    alias(libs.plugins.gms.google.services) apply false
 }
 
 allprojects {
