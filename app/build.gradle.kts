@@ -3,6 +3,7 @@ plugins {
     kotlin("kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.gms.google.services)
 }
 
 android {
@@ -68,4 +69,6 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.navigation.compose)
+
+    implementation(platform(libs.firebase.bom))
 }
