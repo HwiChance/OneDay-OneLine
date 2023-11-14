@@ -53,9 +53,14 @@ dependencies {
     implementation(libs.androidx.savedstate.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui.graphics)
+    implementation(libs.material3)
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.ext.junit)
     androidTestImplementation(libs.test.espresso.core)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
 
     compileOnly(libs.javax.inject)
 
@@ -64,11 +69,14 @@ dependencies {
     implementation(libs.navigation.compose)
 
     implementation(libs.bundles.lifecycle)
+    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.compose.ui.test.manifest)
     kapt(libs.lifecycle.compiler)
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
 
+    implementation(libs.naver.auth)
     implementation(libs.google.auth)
 }

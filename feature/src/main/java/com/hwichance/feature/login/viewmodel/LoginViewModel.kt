@@ -1,55 +1,74 @@
 package com.hwichance.feature.login.viewmodel
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.viewModelScope
 import com.hwichance.feature.R
 import com.hwichance.feature.common.mvvm.BaseViewModel
-import com.hwichance.feature.common.mvvm.event.NavigationEvent
+import com.hwichance.feature.common.mvvm.action.NavigationAction.NavigateToHome
+import com.hwichance.feature.common.mvvm.action.UiAction
 import com.hwichance.feature.common.mvvm.event.UiEvent
-import com.hwichance.feature.login.helper.LoginManager
-import com.hwichance.util.enums.EmailNotFoundException
-import com.hwichance.util.enums.LoginApiException
-import com.hwichance.util.enums.LoginCancelException
+import com.hwichance.util.enums.LoginType
+import com.hwichance.util.exception.EmailNotFoundException
+import com.hwichance.util.exception.LoginApiException
+import com.hwichance.util.exception.LoginCancelException
+import com.hwichance.util.exception.LoginNetworkException
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
-    private val loginManager: LoginManager,
-) : BaseViewModel() {
-    private val _navigationEventFlow: MutableSharedFlow<UiEvent> = MutableSharedFlow(replay = 1)
-    val navigationEventFlow: SharedFlow<UiEvent> get() = _navigationEventFlow
+class LoginViewModel @Inject constructor() : BaseViewModel() {
+    private val _loginTryEventFlow: MutableSharedFlow<LoginType> =
+        MutableSharedFlow(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    val loginTryEventFlow: SharedFlow<LoginType> get() = _loginTryEventFlow
 
-    private val _errorEventFlow: MutableSharedFlow<Int> = MutableSharedFlow(replay = 1)
+    private val _navigationActionFlow: MutableSharedFlow<UiAction> =
+        MutableSharedFlow(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    val navigationActionFlow: SharedFlow<UiAction> get() = _navigationActionFlow
+
+    private val _errorEventFlow: MutableSharedFlow<Int> =
+        MutableSharedFlow(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val errorEventFlow: SharedFlow<Int> get() = _errorEventFlow
 
     override fun sendUiEvent(uiEvent: UiEvent) {
         when (uiEvent) {
-            is LoginUiEvent.LoginResultEvent.OnLoginSuccess -> tryGoogleLogin(uiEvent.email)
+            is LoginUiEvent.OnLoginButtonClick -> tryLogin(uiEvent.type)
+            is LoginUiEvent.LoginResultEvent.OnLoginSuccess -> saveEmailToServer(uiEvent.email)
             is LoginUiEvent.LoginResultEvent.OnLoginFailure -> handleLoginFailure(uiEvent.exception)
         }
     }
 
-    private fun tryGoogleLogin(email: String) {
+    private fun tryLogin(type: LoginType) {
         viewModelScope.launch {
-            println("tryGoogleLogin : $email")
+            _loginTryEventFlow.tryEmit(type)
+        }
+    }
+
+    private fun saveEmailToServer(email: String) {
+        viewModelScope.launch {
             if (email.isNotBlank()) {
-                _navigationEventFlow.tryEmit(NavigationEvent.NavigateToHome)
+                _navigationActionFlow.tryEmit(NavigateToHome)
             }
         }
     }
 
-    private fun handleLoginFailure(exception: Exception) {
+    private fun handleLoginFailure(exception: Throwable) {
         viewModelScope.launch {
-            val errorMessage = when (exception) {
-                EmailNotFoundException -> R.string.login_email_not_found_error
-                LoginCancelException -> R.string.login_cancel_error
-                LoginApiException -> R.string.login_api_error
-                else -> R.string.login_unknown_error
-            }
-            _errorEventFlow.tryEmit(errorMessage)
+            _errorEventFlow.tryEmit(getErrorMessageResourceId(exception))
+        }
+    }
+
+    @StringRes
+    private fun getErrorMessageResourceId(exception: Throwable): Int {
+        return when (exception) {
+            EmailNotFoundException -> R.string.login_email_not_found_error
+            LoginCancelException -> R.string.login_cancel_error
+            LoginApiException -> R.string.login_api_error
+            LoginNetworkException -> R.string.login_network_error
+            else -> R.string.login_unknown_error
         }
     }
 }

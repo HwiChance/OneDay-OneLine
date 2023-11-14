@@ -4,8 +4,8 @@ import com.hwichance.util.enums.LoginType
 
 interface LoginManager {
     fun initialize()
-    fun login(type: LoginType, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit)
+    suspend fun login(type: LoginType, onSuccess: (String) -> Unit, onError: (Throwable) -> Unit)
     fun logout()
-    fun unlink()
-    fun isLoggedIn(): Boolean
+    fun unlink(type: LoginType)
+    suspend fun isLoggedIn(type: LoginType): Boolean
 }
