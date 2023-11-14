@@ -85,4 +85,5 @@ dependencies {
     implementation(libs.google.auth)
 
     implementation(platform(libs.firebase.bom))
+    implementation(libs.naver.auth)
 }
